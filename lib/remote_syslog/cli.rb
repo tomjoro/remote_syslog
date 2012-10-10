@@ -104,6 +104,9 @@ module RemoteSyslog
         opts.on("--tls", "Connect via TCP with TLS") do
           @agent.tls = true
         end
+        opts.on("--zmq", "Connect via ZMQ") do
+           @agent.zmq = true
+         end
 
 
         opts.on("--new-file-check-interval INTERVAL", OptionParser::DecimalInteger,

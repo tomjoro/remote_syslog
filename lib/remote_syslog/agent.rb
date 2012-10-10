@@ -7,6 +7,7 @@ require 'remote_syslog/glob_watch'
 require 'remote_syslog/message_generator'
 require 'remote_syslog/udp_endpoint'
 require 'remote_syslog/tls_endpoint'
+require 'remote_syslog/zeromq_endpoint'
 
 module RemoteSyslog
   class Agent < Servolux::Server
@@ -15,6 +16,9 @@ module RemoteSyslog
 
     # Should use TLS?
     attr_accessor :tls
+
+    # Should use ZMQ?
+    attr_accessor :zmq
 
     # TLS settings
     attr_accessor :client_cert_chain, :client_private_key, :server_cert
@@ -99,6 +103,10 @@ module RemoteSyslog
             :client_private_key => @client_private_key,
             :server_cert => @server_cert,
             :logger => logger)
+        elsif @zmq
+          max_message_size = 10240
+
+          connection = ZeromqEndpoint.new(@dest_host, @dest_port)
         else
           max_message_size = 1024
           connection = UdpEndpoint.new(@destination_host, @destination_port,

@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eventmachine-tail'
   s.add_dependency 'syslog_protocol', [ '~> 0.9.2' ]
   s.add_dependency 'em-resolv-replace'
+  s.add_dependency 'zmq'
 
   ## List your development dependencies here. Development dependencies are
   ## those that are only needed during development
@@ -76,6 +77,7 @@ Gem::Specification.new do |s|
     lib/remote_syslog/message_generator.rb
     lib/remote_syslog/tls_endpoint.rb
     lib/remote_syslog/udp_endpoint.rb
+    lib/remote_syslog/zeromq_endpoint.rb
     remote_syslog.gemspec
   ]
   # = MANIFEST =
